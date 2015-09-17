@@ -35,6 +35,12 @@ class ECParams {
     public static final ECParams secp160k1 = new ECParams("secp160k1");
     public static final ECParams secp224k1 = new ECParams("secp224k1");
 
+    // NRL added this; according to OID Repository, prime192v1 == secp192r1
+    // Parameters for secp192r1 found in SEC 2: Recommended Elliptic Curve Domain Parameters.
+    // SEC2 params for secp160k1 and secp224k1 matched those outlined below.
+
+    public static final ECParams secp192r1 = new ECParams("secp192r1");
+
     private static final Map<String, ECParams> PARAMS = new HashMap<String, ECParams>();
 
     static {
@@ -55,6 +61,16 @@ class ECParams {
         secp224k1.h = 1;
         secp224k1.init();
         PARAMS.put(secp224k1.name, secp224k1);
+
+        secp192r1.p = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFFFFFFFFFFFF";
+        secp192r1.a = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFFFFFFFFFFFC";
+        secp192r1.b = "64210519E59C80E70FA7E9AB72243049FEB8DEECC146B9B1";
+        secp192r1.G = "03188DA80EB03090F67CBF20EB43A18800F4FF0AFD82FF1012";
+        secp192r1.n = "FFFFFFFFFFFFFFFFFFFFFFFF99DEF836146BC9B1B4D22831";
+        secp192r1.h = 1;
+        secp192r1.init();
+        PARAMS.put(secp192r1.name, secp192r1);
+
     }
 
     static ECParams getParams(String name) {
